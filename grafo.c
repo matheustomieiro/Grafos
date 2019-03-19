@@ -207,20 +207,15 @@ int grau_vertice(Grafo *G, int *v){
 /*Algoritmo de Fleury*/
 /*Considerando um grafo não direcionado*/
 /*Retorna uma string com um ciclo euleriano ou com um char '#' se não há ciclo*/
-char *ciclo_euleriano(Grafo *G){
+int ciclo_euleriano(Grafo *G){
 	int grau;
-	/*aloca string*/
-	char *ciclo = (char *) malloc((G->numVertices+1) * sizeof(char));
 	/*Checa se algum dos vértices do grafo tem grau ímpar ou é desconexo*/
 	for(int i=0; i<G->numVertices; i++){
 		grau = grau_vertice(G, i);
+		/*Verificando condicoes suficientes para que existe um ciclo euleriano*/
 		if(grau == 0 || grau % 2 == 1){
-			strcpy(ciclo, "#\0");
-			return ciclo;
-		} 
+			return 0;
+		}
 	}
-
-	
-
-
+	return 1;
 }
