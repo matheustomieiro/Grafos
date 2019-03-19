@@ -204,4 +204,38 @@ int grau_vertice(Grafo *G, int *v){
 	return aux;
 }
 
+int verticeVisitado[10];
+int arestaVisitada[10][10];
 
+void DFS(Grafo *G, int *vertice) {
+	arestaVisitada[0][1] = 1;
+	arestaVisitada[1][0] = 1;
+	verticeVisitado[0] = 1;
+	verticeVisitado[1] = 1;
+	arestaVisitada[1][4] = 1;
+	arestaVisitada[4][1] = 1;
+	
+	printf("Dá ENTER aí");
+	char d;
+	scanf("%c", &d);
+	verticeVisitado[*vertice] = 1;
+	for(int prox=0; prox<G->numVertices; prox++){
+		//Se não foi visitado e há uma aresta
+		if(G->m[*vertice][prox]==1 && !(arestaVisitada[*vertice][prox])) {
+			arestaVisitada[*vertice][prox] = 1;
+			arestaVisitada[prox][*vertice] = 1;
+			printf("Visitando %d %d\n", *vertice, prox);
+			DFS(G, &prox);
+			printf("Saindo da rescursao e estou no vertice %d\n", *vertice);
+		}
+	}
+}
+
+int visitouTodos(Grafo *G) {
+	for (int i=0; i<G->numVertices; i++) {
+		if(verticeVisitado[i] == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}

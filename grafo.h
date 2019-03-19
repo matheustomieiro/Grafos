@@ -22,5 +22,8 @@ void prox_adj(Grafo *G, int *v, int *adj, elem *p, int *prox, int *fim_lista_adj
 elem aresta_menor_peso(Grafo *G, int *erro);
 int grau_vertice(Grafo *G, int *v);
 
+void DFS(Grafo *G, int *vertice);
+int visitouTodos(Grafo *G);
+
 
 #endif
