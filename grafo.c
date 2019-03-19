@@ -214,7 +214,7 @@ char *ciclo_euleriano(Grafo *G){
 	/*Checa se algum dos vértices do grafo tem grau ímpar ou é desconexo*/
 	for(int i=0; i<G->numVertices; i++){
 		grau = grau_vertice(G, i);
-		if(grau < 0 || grau % 2 == 1){
+		if(grau == 0 || grau % 2 == 1){
 			strcpy(ciclo, "#\0");
 			return ciclo;
 		} 
