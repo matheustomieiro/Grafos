@@ -2,10 +2,10 @@ all: grafo.o main.o
 	gcc grafo.o main.o -o main
 
 grafo.o:
-	gcc -c grafo.c	
+	gcc -c -Wall grafo.c	
 
 main.o:
-	gcc -c main.c
+	gcc -c -Wall main.c
 
 run:
 	./main
