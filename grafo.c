@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include "grafo.h"
 
-
-struct grafo{
-	elem m[MAX_NUM_VERTICES][MAX_NUM_VERTICES];	
-	int numVertices;
-	int direcionado;
-};
+// struct grafo{
+// 	elem m[MAX_NUM_VERTICES][MAX_NUM_VERTICES];	
+// 	int numVertices;
+// 	int direcionado;
+// };
 /*Função criar_grafo: cria um grafo;
 @argumentos: ponteiros para inteiros n, erro e direcionado;
 @retorno: retorna, se obteve sucesso, um ponteiro para o grafo criado;	
@@ -199,7 +198,9 @@ elem aresta_menor_peso(Grafo *G, int *erro){
 int grau_vertice(Grafo *G, int *v){
 	int aux=0;
 	for(int i=0; i<G->numVertices; i++){
-		if(*v != i && G->m[*v][i] != SEM_ARESTA) aux++;
+		if(*v != i && G->m[*v][i] != SEM_ARESTA) {
+			aux++;
+		}
 	}
 	return aux;
 }
@@ -211,7 +212,7 @@ int ciclo_euleriano(Grafo *G){
 	int grau;
 	/*Checa se algum dos vértices do grafo tem grau ímpar ou é desconexo*/
 	for(int i=0; i<G->numVertices; i++){
-		grau = grau_vertice(G, i);
+		grau = grau_vertice(G, &i);
 		/*Verificando condicoes suficientes para que existe um ciclo euleriano*/
 		if(grau == 0 || grau % 2 == 1){
 			return 0;
@@ -228,9 +229,9 @@ void DFS(Grafo *G, int *vertice, int *verticeVisitado, int numVertices, int ares
 		if(G->m[*vertice][prox]==1 && !(arestaVisitada[*vertice][prox])) {
 			arestaVisitada[*vertice][prox] = 1;
 			arestaVisitada[prox][*vertice] = 1;
-			printf("Visitando %d %d\n", *vertice, prox);
+			// printf("Visitando %d %d\n", *vertice, prox);
 			DFS(G, &prox, verticeVisitado, numVertices, arestaVisitada);
-			printf("Saindo da rescursao e estou no vertice %d\n", *vertice);
+			// printf("Saindo da recursao e estou no vertice %d\n", *vertice);
 		}
 	}
 }
