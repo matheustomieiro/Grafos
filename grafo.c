@@ -204,38 +204,67 @@ int grau_vertice(Grafo *G, int *v){
 	return aux;
 }
 
-int verticeVisitado[10];
-int arestaVisitada[10][10];
+/*Algoritmo de Fleury*/
+/*Considerando um grafo não direcionado*/
+/*Retorna uma string com um ciclo euleriano ou com um char '#' se não há ciclo*/
+int ciclo_euleriano(Grafo *G){
+	int grau;
+	/*Checa se algum dos vértices do grafo tem grau ímpar ou é desconexo*/
+	for(int i=0; i<G->numVertices; i++){
+		grau = grau_vertice(G, i);
+		/*Verificando condicoes suficientes para que existe um ciclo euleriano*/
+		if(grau == 0 || grau % 2 == 1){
+			return 0;
+		}
+	}
+	return 1;
+}
 
-void DFS(Grafo *G, int *vertice) {
-	arestaVisitada[0][1] = 1;
-	arestaVisitada[1][0] = 1;
-	verticeVisitado[0] = 1;
-	verticeVisitado[1] = 1;
-	arestaVisitada[1][4] = 1;
-	arestaVisitada[4][1] = 1;
-	
-	printf("Dá ENTER aí");
-	char d;
-	scanf("%c", &d);
+// Faz uma busca em profundidade a partir de um vertice, e marca os caminhos visitados em uma matriz
+void DFS(Grafo *G, int *vertice, int *verticeVisitado, int numVertices, int arestaVisitada[][numVertices]) {
 	verticeVisitado[*vertice] = 1;
 	for(int prox=0; prox<G->numVertices; prox++){
-		//Se não foi visitado e há uma aresta
+		//Se há uma aresta e não foi visitado
 		if(G->m[*vertice][prox]==1 && !(arestaVisitada[*vertice][prox])) {
 			arestaVisitada[*vertice][prox] = 1;
 			arestaVisitada[prox][*vertice] = 1;
 			printf("Visitando %d %d\n", *vertice, prox);
-			DFS(G, &prox);
+			DFS(G, &prox, verticeVisitado, numVertices, arestaVisitada);
 			printf("Saindo da rescursao e estou no vertice %d\n", *vertice);
 		}
 	}
 }
 
-int visitouTodos(Grafo *G) {
+int visitouTodos(Grafo *G, int *verticeVisitado) {
 	for (int i=0; i<G->numVertices; i++) {
 		if(verticeVisitado[i] == 0) {
 			return 0;
 		}
 	}
 	return 1;
+}
+
+/*Verifica se uma aresta é ponte (se ao ser apagada é impossibilitada a conexão com os demais vértices)*/
+int ePonte(Grafo *G, int *vOrigem, int *vDestino, int verticeVisitado[], int numVertices, int arestaVisitada[][numVertices]) {
+	//Copiar os marcadores de caminho para não alterar o caminho percorrido na main
+	int copiaVerticeVisitado[numVertices];
+	int copiaArestaVisitada[numVertices][numVertices];
+	for(int i=0; i<numVertices; i++) {
+		copiaVerticeVisitado[i] = verticeVisitado[i];
+	}
+	for (int i=0; i<numVertices; i++) {
+		for (int j=0; j<numVertices; j++) {
+			copiaArestaVisitada[i][j] = arestaVisitada[i][j];
+		}
+	}
+	copiaArestaVisitada[*vOrigem][*vDestino] = 1;
+	copiaArestaVisitada[*vDestino][*vOrigem] = 1;
+
+	//Faz uma busca em profundidade para verificar se a conexão com os outros vértices é possível
+	DFS(G, vDestino, copiaVerticeVisitado, numVertices, copiaArestaVisitada);
+	if (visitouTodos(G, copiaVerticeVisitado)) {
+		return 0;
+	} else {
+		return 1;
+	}
 }
