@@ -229,9 +229,7 @@ void DFS(Grafo *G, int *vertice, int *verticeVisitado, int numVertices, int ares
 		if(G->m[*vertice][prox]==1 && !(arestaVisitada[*vertice][prox])) {
 			arestaVisitada[*vertice][prox] = 1;
 			arestaVisitada[prox][*vertice] = 1;
-			// printf("Visitando %d %d\n", *vertice, prox);
 			DFS(G, &prox, verticeVisitado, numVertices, arestaVisitada);
-			// printf("Saindo da recursao e estou no vertice %d\n", *vertice);
 		}
 	}
 }

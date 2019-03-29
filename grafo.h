@@ -35,5 +35,4 @@ void DFS(Grafo *G, int *vertice, int *verticeVisitado, int numVertices, int ares
 int visitouTodos(Grafo *G, int *verticeVisitado);
 int ePonte(Grafo *G, int *vOrigem, int *vDestino, int verticeVisitado[], int numVertices, int arestaVisitada[][numVertices]);
 
-
 #endif
