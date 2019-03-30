@@ -1,10 +1,10 @@
-#Importing Biblio
-import nltk
+import nltk # Importing library
 
-#Function to include words in file
-def include_words(tagged):
+
+def include_words(tagged):  # Function to include words in file
     for x in range(0, len(tagged)):
         if any(
+                # Testing if the word belongs to the desired grammatical classes
                 [tagged[x][1] == "FW", tagged[x][1] == "IN", tagged[x][1] == "JJ",
                  tagged[x][1] == "JJS", tagged[x][1] == "JJR", tagged[x][1] == "NN",
                  tagged[x][1] == "NNP", tagged[x][1] == "NNPS", tagged[x][1] == "NNS",
@@ -12,18 +12,15 @@ def include_words(tagged):
                  tagged[x][1] == "VB", tagged[x][1] == "VBD", tagged[x][1] == "VBG",
                  tagged[x][1] == "VBN", tagged[x][1] == "VBP", tagged[x][1] == "VBZ"]
         ):
-            f.write(str(tagged[x][0]) + '\n')
+            f.write((str(tagged[x][0])).lower() + '\n')
     return
 
-#Running two times
-for y in range(0, 2):
-    #Reading a phrase
-    phrase= raw_input('Type a phrase: ')
+
+for y in range(0, 2):  # Running two times
+    phrase= raw_input('Type a phrase: ')  # Reading a phrase
     phrase = nltk.word_tokenize(phrase)
     phrase = nltk.pos_tag(phrase)
-    #Opening and saving on file
-    f = open(("TEXT_" + str(y) + ".txt"), "w+")
+    f = open(("TEXT_" + str(y) + ".txt"), "w+")  # Opening and saving on file
     include_words(phrase)
-    #Closing
-    f.close()
+    f.close()   # Closing
 exit()
