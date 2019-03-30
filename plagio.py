@@ -4,7 +4,8 @@ import nltk # Importing library
 def include_words(tagged):  # Function to include words in file
     for x in range(0, len(tagged)):
         if any(
-                # Testing if the word belongs to the desired grammatical classes
+                # Testing if the word belongs to the desired word classes
+                # For all word classes in NLTK, on python: nltk.help.upenn_tagset()
                 [tagged[x][1] == "FW", tagged[x][1] == "IN", tagged[x][1] == "JJ",
                  tagged[x][1] == "JJS", tagged[x][1] == "JJR", tagged[x][1] == "NN",
                  tagged[x][1] == "NNP", tagged[x][1] == "NNPS", tagged[x][1] == "NNS",
