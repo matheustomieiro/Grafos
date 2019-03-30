@@ -16,7 +16,8 @@ int main(int argc, char const *argv[]) {
             printf("%s\n",word); // Just showing. Need to add 'grafo.c'
         }
     fclose(txt);
-    printf("\n\t\tEND\n");
+    if(i == 0)
+        printf("\n\t\tEND\n");
     }
     return 0;
 }
