@@ -1,14 +1,17 @@
-all: grafo.o main.o
-	gcc grafo.o main.o -o main
+all: fila.o grafo.o pacman.o
+	gcc fila.o grafo.o pacman.o -o pacman
+
+fila.o:
+	gcc -c fila.c	
 
 grafo.o:
 	gcc -c grafo.c	
 
-main.o:
-	gcc -c main.c
+pacman.o:
+	gcc -c pacman.c
 
 run:
-	./main
+	./pacman
 
 clear:
-	rm *.o main
+	rm *.o pacman
