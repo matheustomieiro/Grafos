@@ -1,9 +1,3 @@
 hello
 friend
-i
-have
-water
-really
-knows
-takes
-life
+are
