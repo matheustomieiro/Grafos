@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "grafolista.h"
+#define MAX 25
 
 struct _aresta {
-    char *nome;
+    char nome[MAX];
     struct _aresta *prox;
 };
 
 struct _vertice {
-    char *nome;
+    char nome[MAX];
     int num_arestas;
 	struct _vertice *prox;
     Aresta *primeiro_elem;
@@ -39,26 +41,31 @@ Grafo *criar_grafo(){
 @argumentos: ponteiro para grafo G e string da palavra;
 @retorno: void;	
 */
-void inserir_vertice(Grafo *G, char *nome){
+void inserir_vertice(Grafo *G, char nome[]){
     Vertice *V = (Vertice *) malloc(sizeof(Vertice));
-    V->nome = (char*) malloc(20*sizeof(char));
-    V->nome = nome;
+    strcpy(V->nome, nome);
+    G->numVertices++;
     V->primeiro_elem = NULL;
     V->ultimo_elem = NULL;
     V->num_arestas = 0;
-    V->prox = G->vertices->prox;
+    if(G->vertices != NULL){
+        V->prox = G->vertices;
+    }else {
+        V->prox = NULL;
+    }
     G->vertices = V;
+    
 }
 
 /*Função buscar_vert: verifica se a palavra ja esta na lista de vertices;
 @argumentos: ponteiro para grafo G e string da palavra;
 @retorno: retorna, se obteve sucesso, um ponteiro para o vertice;	
 */
-Vertice *buscar_vert(Grafo *G, char *word) {
+Vertice *buscar_vert(Grafo *G, char word[]) {
 	if(G != NULL){
         Vertice *V = G->vertices;
 		while(V != NULL){
-            if(V->nome == word) return (V);
+            if(!(strcmp(V->nome,word))) return (V);
             V = V->prox;
         }
 	}
@@ -69,16 +76,15 @@ Vertice *buscar_vert(Grafo *G, char *word) {
 @argumentos: ponteiro para grafo G, string da palavra vertice e string da palavra aresta;
 @retorno: retorna void;	
 */
-void inserir_aresta(Grafo *G, char *nome_vertice, char *nome_aresta){
+void inserir_aresta(Grafo *G, char nome_vertice[], char nome_aresta[]){
     Vertice *V = buscar_vert(G, nome_vertice);
     if(V != NULL){
         Aresta *A = (Aresta*) malloc(sizeof(Aresta));
-        A->nome = (char*) malloc(20*sizeof(char));
-        A->nome = nome_aresta;
+        strcpy(A->nome, nome_aresta);
         V->num_arestas++;
         if(V->primeiro_elem != NULL){
             A->prox = V->ultimo_elem->prox;
-            V->ultimo_elem = A;
+            V->ultimo_elem->prox = A;
         }
         else {
             V->primeiro_elem = A;
@@ -96,16 +102,17 @@ void inserir_aresta(Grafo *G, char *nome_vertice, char *nome_aresta){
 void imprime_grafo(Grafo *G) {
     if(G != NULL){
         Vertice *V = G->vertices;
-        Aresta *A = V->primeiro_elem;
+        Aresta *A;
         printf("Grafo texto - %d vertices:\n", G->numVertices);
         while (V != NULL){
+            A = V->primeiro_elem;
             printf("Vertice: %s - %d arestas\n", V->nome, V->num_arestas);
             while (A != NULL){
                 printf("    -%s\n", A->nome);
                 A = A->prox;
             }
+            V = V->prox;
         }
     }
     printf("FIM\n");
 }
-
