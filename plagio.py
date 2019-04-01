@@ -13,7 +13,7 @@ def include_words(tagged):  # Function to include words in file
                  tagged[x][1] == "VB", tagged[x][1] == "VBD", tagged[x][1] == "VBG",
                  tagged[x][1] == "VBN", tagged[x][1] == "VBP", tagged[x][1] == "VBZ"]
         ):
-            f.write((str(tagged[x][0])).lower() + '\0' + '\n')
+            f.write((str(tagged[x][0])).lower() + ' ' + str(tagged[x][1].lower()) + '\0' + '\n')
     return
 
 
@@ -24,4 +24,4 @@ for y in range(0, 2):  # Running two times
     f = open(("TEXT_" + str(y) + ".txt"), "w+")  # Opening and saving on file
     include_words(phrase)
     f.close()   # Closing
-exit()
+exit(0)
