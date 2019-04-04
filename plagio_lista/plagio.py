@@ -17,11 +17,14 @@ def include_words(tagged):  # Function to include words in file
     return
 
 
-for y in range(0, 2):  # Running two times
-    phrase= raw_input('Type a phrase: ')  # Reading a phrase
-    phrase = nltk.word_tokenize(phrase)
-    phrase = nltk.pos_tag(phrase)
-    f = open(("TEXT_" + str(y) + ".txt"), "w+")  # Opening and saving on file
-    include_words(phrase)
-    f.close()   # Closing
-exit(0)
+def main():
+    for y in range(0, 2):  # Running two times
+        phrase = raw_input('Type a phrase: ')  # Reading a phrase
+        phrase = nltk.word_tokenize(phrase)
+        phrase = nltk.pos_tag(phrase)
+        f = open(("TEXT_" + str(y) + ".txt"), "w+")  # Opening and saving on file
+        include_words(phrase)
+        f.close()   # Closing
+    exit(0)
+
+main()

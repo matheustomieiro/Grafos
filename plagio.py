@@ -1,4 +1,4 @@
-import nltk # Importing library
+import nltk# Importing library
 
 
 def include_words(tagged):  # Function to include words in file
@@ -18,7 +18,7 @@ def include_words(tagged):  # Function to include words in file
 
 
 for y in range(0, 2):  # Running two times
-    phrase= raw_input('Type a phrase: ')  # Reading a phrase
+    phrase = raw_input('Type a phrase: ')  # Reading a phrase
     phrase = nltk.word_tokenize(phrase)
     phrase = nltk.pos_tag(phrase)
     f = open(("TEXT_" + str(y) + ".txt"), "w+")  # Opening and saving on file

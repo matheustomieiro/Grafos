@@ -8,7 +8,7 @@ main.o:
 	gcc -c -Wall plagiotest.c
 
 run:
-	./test
+	./test < teste.in
 
 clear:
 	rm *.o test

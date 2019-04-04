@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]) {
     char word_a[255], word_b[255];
     char filename[255];
     int n = 2; // Two files that will be compared
-    Grafo textos[MAX];// Declare an array os the struct Grafo
+    Grafo* textos[MAX];// Declare an array os the struct Grafo
     FILE *txt;    
     for(int i=0; i<n; i++){ // Running for_loop 'n' times
         sprintf(filename, "TEXT_%d.txt", i);

@@ -3,7 +3,8 @@
 #include "grafo.h"
 
 
-struct grafo{
+struct grafo
+{
 	elem m[MAX_NUM_VERTICES][MAX_NUM_VERTICES];	
 	int numVertices;
 	int direcionado;
