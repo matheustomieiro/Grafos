@@ -2,8 +2,8 @@ PROJETOS - DISCIPLINA DE MODELAGEM COMPUTACIONAL EM GRAFOS
 	Professor: Thiago Alexandre Salgueiro Pardo
 Alunos:
 	Daniel da Rocha Fróes - 10255956
-	Leandro Satoshi de Siqueira - 10893103
 	Gabriel Nicolau - XXXXXXXX
+	Leandro Satoshi de Siqueira - 10893103
 	Mateus Prado Santos - 10851707
 	Matheus Tomieiro de Oliveira - 10734630
 
