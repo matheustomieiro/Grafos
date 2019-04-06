@@ -1,0 +1,5 @@
+Requerido ter o python 2.7 (Geralmente tem)
+Para instalar o ntlk full data:
+No bash:
+    sudo apt install pip  && sudo pip install -U nltk && sudo pip install -U numpy && python -m nltk.downloader all
+    
