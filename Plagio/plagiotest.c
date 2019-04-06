@@ -12,9 +12,6 @@ int main(int argc, char const *argv[]) {
     char word_a[25], word_b[25];
     char class[25];
 
-    //char filename[255];
-    //int n = 2; // Two files that will be compared
-
     Grafo *texto_a, *texto_b;// Declare an array of type Graph
     FILE *txt;    
     txt = fopen("TEXT_0.txt","r"); // Opening file in reading mode
@@ -56,7 +53,7 @@ int main(int argc, char const *argv[]) {
     fclose(txt);
      
    
-    printf("porcentagem de plagio: %.2f\n",  checarPlagio(texto_a, texto_b));
+    printf("Porcentagem de plagio: %.2f\n",  checarPlagio(texto_a, texto_b));
     // imprime_grafo(texto_a);//print the graphs
     // printf("\n------------------------------------\n");
     // imprime_grafo(texto_b);
